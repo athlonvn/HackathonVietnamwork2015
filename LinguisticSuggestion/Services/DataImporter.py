@@ -26,10 +26,7 @@ def LoginVietnamWork():
     return token
 
 
-def GetSearchDataVietnamWork():
+def getSearchDataVietnamWork():
     response = requests.post(SEARCH_URL,headers = {"CONTENT-MD5":DEFAULT_KEY})
     data = json.loads(response.text)
-    return data
-
-
-print GetSearchDataVietnamWork()
+    return data['data']['jobs']
