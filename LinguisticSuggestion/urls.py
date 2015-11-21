@@ -1,17 +1,19 @@
 from django.conf.urls import patterns, include, url
-
+from LinguisticSuggestion.views import consumer as cs
+from LinguisticSuggestion.views import producer as pd
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'LinguisticSuggestion.views.home', name='home'),
-    # url(r'^LinguisticSuggestion/', include('LinguisticSuggestion.foo.urls')),
+    url(r'cs/index/', cs.Index.as_view()),
+    url(r'pd/index/', pd.Index.as_view()),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'get_suggest/', cs.GetSuggestions.as_view()),
+    url(r'get_result/', cs.GetResult.as_view()),
+    url(r'get_operators/', cs.GetOperators.as_view()),
 
-    # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'build_suggest_operator_index/', pd.GetSuggestions.as_view()),
+    url(r'get_result/', cs.GetResult.as_view()),
+    url(r'get_operators/', cs.GetOperators.as_view()),
 )
